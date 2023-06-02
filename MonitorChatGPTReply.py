@@ -106,26 +106,3 @@ def check_for_last_email():
 
 if __name__ == "__main__":
     main()
-
-    # Remove HTML tags from the email body if needed
-    if message.HTMLBody:
-        soup = BeautifulSoup(message.HTMLBody, "html.parser")
-        body = soup.get_text()
-        # Microsoft Exchange emails come with a comprehensive Exchange tag. Therefore, merely specifying an email address may not suffice.
-        allowed_senders = ["email1xxxxx@gmail.com", "email2xxxxx@gmail.com"]
-
-    if should_reply_to(sender, allowed_senders):
-        # Display the message
-        reply = message.Reply()
-        reply.Body = "Hi"
-        reply.To=email_to
-        reply.Display(True)
-
-        print("Continue monitoring Outlook 365 inbox...")
-
-    else:
-        print("Sender not in the allowed_senders list. No reply generated.")
-
-
-if __name__ == "__main__":
-    main()
